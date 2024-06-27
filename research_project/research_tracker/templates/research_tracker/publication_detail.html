@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de la Publication</title>
+</head>
+<body>
+    <h1>Détails de la Publication</h1>
+    <p>Titre : {{ publication.titre }}</p>
+    <p>Résumé : {{ publication.resume }}</p>
+    <p>Projet associé : {{ publication.projet.titre }}</p>
+    <p>Date de publication : {{ publication.date_publication }}</p>
+    <a href="{% url 'publication-edit' publication.pk %}">Modifier</a>
+    <a href="{% url 'publication-delete' publication.pk %}">Supprimer</a>
+    <a href="{% url 'publication-list' %}">Retour à la liste</a>
+</body>
+</html>

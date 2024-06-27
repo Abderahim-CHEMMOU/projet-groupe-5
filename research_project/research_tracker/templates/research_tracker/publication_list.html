@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Publications</title>
+</head>
+<body>
+    <h1>Liste des Publications</h1>
+    <a href="{% url 'publication-create' %}">Ajouter une Publication</a>
+    <ul>
+        {% for publication in object_list %}
+            <li>{{ publication.titre }} - {{ publication.resume }} - {{ publication.date_publication }}
+                <a href="{% url 'publication-detail' publication.pk %}">Détails</a>
+                <a href="{% url 'publication-edit' publication.pk %}">Modifier</a>
+                <a href="{% url 'publication-delete' publication.pk %}">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

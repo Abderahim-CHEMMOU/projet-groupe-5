@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Projets</title>
+</head>
+<body>
+    <h1>Liste des Projets</h1>
+    <ul>
+        {% for projet in object_list %}
+            <li>
+                <a href="{% url 'projet-detail' projet.pk %}">{{ projet.titre }}</a> - {{ projet.description }}
+                <a href="{% url 'projet-delete' projet.pk %}" style="color: red;">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

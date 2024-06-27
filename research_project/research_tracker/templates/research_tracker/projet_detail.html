@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails du Projet</title>
+</head>
+<body>
+    <h1>Détails du Projet</h1>
+    <p>Titre : {{ projet.titre }}</p>
+    <p>Description : {{ projet.description }}</p>
+    <p>Date de début : {{ projet.date_debut }}</p>
+    <p>Date de fin prévue : {{ projet.date_fin_prevue }}</p>
+    <p>Chef de projet : {{ projet.chef_de_projet.nom }}</p>
+    <p>Chercheurs :</p>
+    <ul>
+        {% for chercheur in projet.chercheurs.all %}
+            <li>{{ chercheur.nom }} - {{ chercheur.specialite }}</li>
+        {% endfor %}
+    </ul>
+    <p>ID du Projet : {{ projet.pk }}</p>
+    <a href="{% url 'projet-edit' projet.pk %}">Modifier</a>
+    <a href="{% url 'projet-delete' projet.pk %}">Supprimer</a>
+    <a href="{% url 'projet-list' %}">Retour à la liste</a>
+
+    <!-- <h2>Debugging Information</h2>
+    {% for key, value in request.GET.items %}
+        <p>{{ key }}: {{ value }}</p>
+    {% endfor %} -->
+</body>
+</html>

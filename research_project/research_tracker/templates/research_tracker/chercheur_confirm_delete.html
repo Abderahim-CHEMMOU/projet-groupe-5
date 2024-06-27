@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer Chercheur</title>
+</head>
+<body>
+    <h1>Supprimer Chercheur</h1>
+    <p>Êtes-vous sûr de vouloir supprimer {{ object.nom }} ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Oui, supprimer</button>
+    </form>
+    <a href="{% url 'chercheur-list' %}">Annuler</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmer la suppression du projet</title>
+</head>
+<body>
+    <h1>Confirmer la suppression du projet</h1>
+    <p>Êtes-vous sûr de vouloir supprimer le projet "{{ object.titre }}" ? Cette action est irréversible.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmer la suppression</button>
+        <a href="{% url 'projet-list' %}">Annuler</a>
+    </form>
+</body>
+</html>

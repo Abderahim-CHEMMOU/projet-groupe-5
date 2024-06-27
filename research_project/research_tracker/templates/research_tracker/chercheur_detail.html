@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails du Chercheur</title>
+</head>
+<body>
+    <h1>Détails du Chercheur</h1>
+    <p>Nom : {{ object.nom }}</p>
+    <p>Spécialité : {{ object.specialite }}</p>
+    <a href="{% url 'chercheur-edit' object.pk %}">Modifier</a>
+    <a href="{% url 'chercheur-delete' object.pk %}">Supprimer</a>
+    <a href="{% url 'chercheur-list' %}">Retour à la liste</a>
+</body>
+</html>

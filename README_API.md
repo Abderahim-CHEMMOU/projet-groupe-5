@@ -26,7 +26,7 @@ cd research_project
 Créez un environnement virtuel pour isoler les dépendances du projet.
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # Sur Windows, utilisez `venv\Scripts\activate`
 ```
 
@@ -34,7 +34,7 @@ source venv/bin/activate  # Sur Windows, utilisez `venv\Scripts\activate`
 Installez les dépendances nécessaires depuis le fichier requirements.txt.
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt 
 ```
 4. Configurer la Base de Données j'ai Utilisé Sqlite3
 Si vous utilisez MySQL, assurez-vous que le serveur MySQL est en cours d'exécution et créez une base de données pour votre projet.
@@ -56,7 +56,7 @@ DATABASES = {
 Appliquez les migrations pour configurer votre base de données.
 
 ```bash
-python manage.py migrate
+python3 manage.py migrate
 ```
 
 6. Créer un Superutilisateur
@@ -64,13 +64,13 @@ Créez un compte superutilisateur pour accéder à l'interface d'administration 
 
 ```bash
 
-python manage.py createsuperuser
+python3 manage.py createsuperuser
 ```
 7. Démarrer le Serveur de Développement
 Démarrez le serveur de développement Django.
 
 ```bash
-python manage.py runserver
+python3 manage.py runserver
 ```
 Accédez à l'application à l'adresse http://127.0.0.1:8000/tracker/.
 

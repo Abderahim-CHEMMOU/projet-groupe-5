@@ -1,7 +1,7 @@
-// src/components/PublicationForm.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api';
+import '../styles/PublicationForm.css';
 
 const PublicationForm = () => {
   const { id } = useParams();
@@ -16,9 +16,14 @@ const PublicationForm = () => {
     const fetchProjets = async () => {
       try {
         const response = await api.get('/projets/');
-        setProjetOptions(response.data);
+        if (response.data && Array.isArray(response.data.results)) {
+          setProjetOptions(response.data.results);
+        } else {
+          setProjetOptions([]);
+        }
       } catch (error) {
         console.error('There was an error fetching the projets!', error);
+        setProjetOptions([]);
       }
     };
 
@@ -29,7 +34,7 @@ const PublicationForm = () => {
         .then(response => {
           setTitre(response.data.titre);
           setResume(response.data.resume);
-          setProjet(response.data.projet);
+          setProjet(response.data.projet.id);  // Assurez-vous que cela pointe vers l'ID du projet
           setDatePublication(response.data.date_publication);
         })
         .catch(error => console.error('There was an error fetching the publication!', error));
@@ -58,7 +63,7 @@ const PublicationForm = () => {
   };
 
   return (
-    <div>
+    <div className="publication-form-container">
       <h1>{id ? 'Modifier' : 'Créer'} une Publication</h1>
       <form onSubmit={handleSubmit}>
         <div>

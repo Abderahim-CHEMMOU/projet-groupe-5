@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api';
+import '../styles/ChercheurList.css'; // Import the CSS file
 
 const ChercheurList = () => {
   const [chercheurs, setChercheurs] = useState([]);
@@ -31,18 +32,20 @@ const ChercheurList = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Liste des Chercheurs</h1>
       <ul>
         {chercheurs.map((chercheur) => (
           <li key={chercheur.id}>
             {chercheur.nom} - {chercheur.specialite}
-            <Link to={`/chercheurs/${chercheur.id}/edit`}>Modifier</Link>
-            <button onClick={() => handleDelete(chercheur.id)}>Supprimer</button>
+            <div>
+              <Link className="link" to={`/chercheurs/${chercheur.id}/edit`}>Modifier</Link>
+              <button className="delete-button" onClick={() => handleDelete(chercheur.id)}>Supprimer</button>
+            </div>
           </li>
         ))}
       </ul>
-      <Link to="/chercheurs/new">Créer un Chercheur</Link>
+      <Link className="create-link" to="/chercheurs/new">Créer un Chercheur</Link>
     </div>
   );
 };

@@ -15,7 +15,7 @@ Assurez-vous que les éléments suivants sont installés sur votre système :
 Clonez le dépôt GitHub de votre projet sur votre machine locale.
 
 ```bash
-git clone git@github.com:Abderahim-CHEMMOU/td-djangorestapi--CHEMMOU---ABDERAHIM-.git
+git clone git@github.com:Abderahim-CHEMMOU/projet-groupe-5.git
 cd research-tracker-frontend/
 
 npm install

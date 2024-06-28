@@ -4,7 +4,7 @@ Accept: application/json
 
 ###
 
-# Test for getting list of chercheurs 
+# Test for getting list of chercheurs
 GET http://127.0.0.1:8000/tracker/chercheurs/
 Accept: application/json
 

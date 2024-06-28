@@ -1,49 +1,56 @@
 // src/components/ProjetForm.js
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api';
+import '../styles/ProjetForm.css';
 
 const ProjetForm = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
   const [titre, setTitre] = useState('');
   const [description, setDescription] = useState('');
   const [dateDebut, setDateDebut] = useState('');
   const [dateFinPrevue, setDateFinPrevue] = useState('');
   const [chefDeProjet, setChefDeProjet] = useState('');
   const [chercheurs, setChercheurs] = useState([]);
-  const [chercheurOptions, setChercheurOptions] = useState([]);
+  const [chercheursOptions, setChercheursOptions] = useState([]);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
-    const fetchChercheurs = async () => {
-      try {
-        const response = await api.get('/chercheurs/');
-        setChercheurOptions(response.data);
-      } catch (error) {
-        console.error('There was an error fetching the chercheurs!', error);
-      }
-    };
-
     fetchChercheurs();
-
     if (id) {
-      api.get(`/projets/${id}/`)
-        .then(response => {
-          setTitre(response.data.titre);
-          setDescription(response.data.description);
-          setDateDebut(response.data.date_debut);
-          setDateFinPrevue(response.data.date_fin_prevue);
-          setChefDeProjet(response.data.chef_de_projet);
-          setChercheurs(response.data.chercheurs);
-        })
-        .catch(error => console.error('There was an error fetching the projet!', error));
+      fetchProjet(id);
     }
   }, [id]);
+
+  const fetchChercheurs = async () => {
+    try {
+      const response = await api.get('/chercheurs/');
+      setChercheursOptions(response.data.results);
+      console.log("Chercheurs fetched: ", response.data);
+    } catch (error) {
+      console.error('There was an error fetching the chercheurs!', error);
+    }
+  };
+
+  const fetchProjet = async (id) => {
+    try {
+      const response = await api.get(`/projets/${id}/`);
+      const projet = response.data;
+      setTitre(projet.titre);
+      setDescription(projet.description);
+      setDateDebut(projet.date_debut);
+      setDateFinPrevue(projet.date_fin_prevue);
+      setChefDeProjet(projet.chef_de_projet.id);
+      setChercheurs(projet.chercheurs.map(c => c.id));
+    } catch (error) {
+      console.error('There was an error fetching the projet!', error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const data = {
+    const projetData = {
       titre,
       description,
       date_debut: dateDebut,
@@ -51,12 +58,13 @@ const ProjetForm = () => {
       chef_de_projet: chefDeProjet,
       chercheurs
     };
-    const url = id ? `/projets/${id}/` : '/projets/';
-    const method = id ? 'put' : 'post';
 
     try {
-      await api[method](url, data);
-      alert('Projet sauvegardé avec succès!');
+      if (id) {
+        await api.put(`/projets/${id}/`, projetData);
+      } else {
+        await api.post('/projets/', projetData);
+      }
       navigate('/projets');
     } catch (error) {
       console.error('There was an error saving the projet!', error);
@@ -64,7 +72,7 @@ const ProjetForm = () => {
   };
 
   return (
-    <div>
+    <div className="projet-form-container">
       <h1>{id ? 'Modifier' : 'Créer'} un Projet</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -76,18 +84,18 @@ const ProjetForm = () => {
           <textarea value={description} onChange={e => setDescription(e.target.value)} required />
         </div>
         <div>
-          <label>Date de Début:</label>
+          <label>Date de début:</label>
           <input type="date" value={dateDebut} onChange={e => setDateDebut(e.target.value)} required />
         </div>
         <div>
-          <label>Date de Fin Prévue:</label>
+          <label>Date de fin prévue:</label>
           <input type="date" value={dateFinPrevue} onChange={e => setDateFinPrevue(e.target.value)} required />
         </div>
         <div>
-          <label>Chef de Projet:</label>
+          <label>Chef de projet:</label>
           <select value={chefDeProjet} onChange={e => setChefDeProjet(e.target.value)} required>
-            <option value="">Sélectionner un chef de projet</option>
-            {chercheurOptions.map((chercheur) => (
+            <option value="">Sélectionnez un chef de projet</option>
+            {chercheursOptions.map((chercheur) => (
               <option key={chercheur.id} value={chercheur.id}>
                 {chercheur.nom}
               </option>
@@ -96,25 +104,13 @@ const ProjetForm = () => {
         </div>
         <div>
           <label>Chercheurs:</label>
-          {chercheurOptions.map((chercheur) => (
-            <div key={chercheur.id}>
-              <label>
-                <input
-                  type="checkbox"
-                  value={chercheur.id}
-                  checked={chercheurs.includes(chercheur.id)}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setChercheurs([...chercheurs, chercheur.id]);
-                    } else {
-                      setChercheurs(chercheurs.filter((id) => id !== chercheur.id));
-                    }
-                  }}
-                />
+          <select multiple value={chercheurs} onChange={e => setChercheurs(Array.from(e.target.selectedOptions, option => option.value))} required>
+            {chercheursOptions.map((chercheur) => (
+              <option key={chercheur.id} value={chercheur.id}>
                 {chercheur.nom}
-              </label>
-            </div>
-          ))}
+              </option>
+            ))}
+          </select>
         </div>
         <button type="submit">{id ? 'Modifier' : 'Créer'}</button>
       </form>

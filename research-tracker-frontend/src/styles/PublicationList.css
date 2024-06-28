@@ -1,0 +1,120 @@
+/* src/styles/PublicationList.css */
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Container */
+  .publication-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .publication-list-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Search input */
+  .publication-list-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* List */
+  .publication-list-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .publication-list-container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #fff;
+  }
+  
+  /* Button group */
+  .publication-list-container .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+  
+  /* Buttons */
+  .publication-list-container button,
+  .publication-list-container a {
+    padding: 5px 10px;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .publication-list-container button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .publication-list-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .publication-list-container a {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .publication-list-container a:hover {
+    background-color: #218838;
+  }
+  
+  /* Delete button */
+  .publication-list-container .button-delete {
+    background-color: #dc3545;
+  }
+  
+  .publication-list-container .button-delete:hover {
+    background-color: #c82333;
+  }
+  
+  /* Modal styles */
+  .Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+  

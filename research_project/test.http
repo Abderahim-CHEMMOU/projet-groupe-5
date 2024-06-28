@@ -1,45 +1,56 @@
+# Test for getting list of chercheurs with pagination
+GET http://127.0.0.1:8000/tracker/chercheurs/?page=1
+Accept: application/json
+
 ###
-# Test pour récupérer tous les chercheurs
+
+# Test for getting list of chercheurs 
 GET http://127.0.0.1:8000/tracker/chercheurs/
+Accept: application/json
 
 ###
-# Test pour récupérer un chercheur spécifique
-GET http://127.0.0.1:8000/tracker/chercheurs/1/
 
-###
-# Test pour créer un chercheur
+# Test for creating a new chercheur
 POST http://127.0.0.1:8000/tracker/chercheurs/
 Content-Type: application/json
 
 {
   "nom": "John Doe",
-  "specialite": "Physics"
+  "specialite": "Computer Science"
 }
 
 ###
-# Test pour mettre à jour un chercheur
-PUT http://127.0.0.1:8000/tracker/chercheurs/1/
+
+# Test for getting a specific chercheur by ID
+GET http://127.0.0.1:8000/tracker/chercheurs/74/
+Accept: application/json
+
+###
+
+# Test for updating a chercheur by ID
+PUT http://127.0.0.1:8000/tracker/chercheurs/74/
 Content-Type: application/json
 
 {
-  "nom": "John Smith",
-  "specialite": "Mathematics"
+  "nom": "Jane Doe",
+  "specialite": "Data Science"
 }
 
 ###
-# Test pour supprimer un chercheur
-DELETE http://127.0.0.1:8000/tracker/chercheurs/1/
+
+# Test for deleting a chercheur by ID
+DELETE http://127.0.0.1:8000/tracker/chercheurs/74/
+Accept: application/json
 
 ###
-# Test pour récupérer tous les projets
-GET http://127.0.0.1:8000/tracker/projets/
+
+# Test for getting list of projets with pagination
+GET http://127.0.0.1:8000/tracker/projets/?page=1
+Accept: application/json
 
 ###
-# Test pour récupérer un projet spécifique
-GET http://127.0.0.1:8000/tracker/projets/1/
 
-###
-# Test pour créer un projet
+# Test for creating a new projet
 POST http://127.0.0.1:8000/tracker/projets/
 Content-Type: application/json
 
@@ -48,60 +59,77 @@ Content-Type: application/json
   "description": "Project Description",
   "date_debut": "2024-06-01",
   "date_fin_prevue": "2025-06-01",
-  "chef_de_projet": 1,
-  "chercheurs": [1, 2]
+  "chef_de_projet": 23,
+  "chercheurs": [57, 61]
 }
 
 ###
-# Test pour mettre à jour un projet
-PUT http://127.0.0.1:8000/tracker/projets/1/
+
+# Test for getting a specific projet by ID
+GET http://127.0.0.1:8000/tracker/projets/51/
+Accept: application/json
+
+###
+
+# Test for updating a projet by ID
+PUT http://127.0.0.1:8000/tracker/projets/51/
 Content-Type: application/json
 
 {
   "titre": "Updated Project",
   "description": "Updated Description",
-  "date_debut": "2024-07-01",
-  "date_fin_prevue": "2025-07-01",
-  "chef_de_projet": 1,
-  "chercheurs": [1, 3]
+  "date_debut": "2024-06-01",
+  "date_fin_prevue": "2025-06-01",
+  "chef_de_projet": 61,
+  "chercheurs": [23, 57]
 }
 
 ###
-# Test pour supprimer un projet
-DELETE http://127.0.0.1:8000/tracker/projets/1/
+
+# Test for deleting a projet by ID
+DELETE http://127.0.0.1:8000/tracker/projets/51/
+Accept: application/json
 
 ###
-# Test pour récupérer toutes les publications
-GET http://127.0.0.1:8000/tracker/publications/
+
+# Test for getting list of publications with pagination
+GET http://127.0.0.1:8000/tracker/publications/?page=1
+Accept: application/json
 
 ###
-# Test pour récupérer une publication spécifique
-GET http://127.0.0.1:8000/tracker/publications/1/
 
-###
-# Test pour créer une publication
+# Test for creating a new publication
 POST http://127.0.0.1:8000/tracker/publications/
 Content-Type: application/json
 
 {
   "titre": "New Publication",
   "resume": "Publication Summary",
-  "projet": 1,
-  "date_publication": "2024-06-15"
+  "projet": 4,
+  "date_publication": "2024-06-01"
 }
 
 ###
-# Test pour mettre à jour une publication
-PUT http://127.0.0.1:8000/tracker/publications/1/
+
+# Test for getting a specific publication by ID
+GET http://127.0.0.1:8000/tracker/publications/46/
+Accept: application/json
+
+###
+
+# Test for updating a publication by ID
+PUT http://127.0.0.1:8000/tracker/publications/46/
 Content-Type: application/json
 
 {
   "titre": "Updated Publication",
   "resume": "Updated Summary",
-  "projet": 1,
-  "date_publication": "2024-07-15"
+  "projet": 4,
+  "date_publication": "2024-06-01"
 }
 
 ###
-# Test pour supprimer une publication
-DELETE http://127.0.0.1:8000/tracker/publications/1/
+
+# Test for deleting a publication by ID
+DELETE http://127.0.0.1:8000/tracker/publications/46/
+Accept: application/json

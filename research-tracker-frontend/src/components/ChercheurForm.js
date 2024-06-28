@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api';
+import '../styles/ChercheurForm.css';
 
 const ChercheurForm = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const ChercheurForm = () => {
   };
 
   return (
-    <div>
+    <div className="chercheur-form-container">
       <h1>{id ? 'Modifier' : 'Créer'} un Chercheur</h1>
       <form onSubmit={handleSubmit}>
         <div>

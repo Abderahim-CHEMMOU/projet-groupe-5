@@ -1,6 +1,10 @@
 # Test for getting list of chercheurs with pagination
 GET http://127.0.0.1:8000/tracker/chercheurs/?page=1
 Accept: application/json
+###
+# Filtering
+GET http://127.0.0.1:8000/tracker/chercheurs/?nom=SalimESPAGNLLLM&specialite=Physique_1123I8ZZZZZZ
+Accept: application/json
 
 ###
 
@@ -47,6 +51,10 @@ Accept: application/json
 # Test for getting list of projets with pagination
 GET http://127.0.0.1:8000/tracker/projets/?page=1
 Accept: application/json
+###
+# Test Filtering projet
+http://127.0.0.1:8000/tracker/projets/?chef_de_projet__nom=SalimESPAGNLLLM&titre=JS%20HARD
+
 
 ###
 
@@ -108,6 +116,13 @@ Content-Type: application/json
   "projet": 4,
   "date_publication": "2024-06-01"
 }
+
+### 
+# test Filtering
+http://127.0.0.1:8000/tracker/publications/?projet__chef_de_projet__nom=SalimESPAGNLLLM&titre=New%20Publication
+
+
+
 
 ###
 

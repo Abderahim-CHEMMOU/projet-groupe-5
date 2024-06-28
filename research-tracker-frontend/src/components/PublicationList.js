@@ -88,7 +88,7 @@ const PublicationList = () => {
           </li>
         ))}
       </ul>
-      <Link to="/publications/new" className="create-button">Créer une Publication</Link>
+
 
       {selectedPublication && (
         <Modal
@@ -108,6 +108,7 @@ const PublicationList = () => {
       {totalPages > 1 && (
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       )}
+       <Link to="/publications/new" className="create-button">Créer une Publication</Link>
     </div>
   );
 };

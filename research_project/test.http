@@ -133,3 +133,4 @@ Content-Type: application/json
 # Test for deleting a publication by ID
 DELETE http://127.0.0.1:8000/tracker/publications/46/
 Accept: application/json
+###ceci est le code
